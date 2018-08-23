@@ -79,7 +79,7 @@
 			<div class="col-sm-4">
 				<div class="page-header float-left">
 					<div class="page-title">
-						<h1><a href="./logout" name="logout">로그아웃</a></h1>
+						<h1><a href="./logout" name="logout">로그아웃!!!!!</a></h1>
 					</div>
 				</div>
 			</div>
