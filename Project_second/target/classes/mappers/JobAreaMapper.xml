@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abc.mapper.JobAreaMapper">
+
+	<select id="read" resultType="org.abc.domain.JobAreaVO">
+		select * from jobarea where
+		num=#{num}
+	</select>
+
+	<!-- select * from house union all select * from jobarea where num>0 order 
+		by create_date desc limit 0,10; -->
+
+	<update id="update">
+		update jobarea set
+		area=#{area},gu=#{gu},dong=#{dong},areanum=#{areanum},money=#{money}
+		where num=#{num}
+	</update>
+
+	<delete id="delete">
+		delete from jobarea where num=#{num}
+	</delete>
+	
+	<insert id="create">
+		insert into jobarea (area,gu,dong,areanum,struck,money)
+		values(#{area},#{gu},#{dong},#{areanum},#{struck},#{money})
+	</insert>
+	
+</mapper>
+

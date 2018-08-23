@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abc.mapper.ListMapper">
+
+	<select id="listCriteria" resultType="org.abc.domain.ListAllVO">
+		<![CDATA[
+			 select * from house
+			 ]]>
+			 
+			 <include refid="search"></include>
+			 
+			 <![CDATA[
+			 union all
+			 select * from jobarea
+			 ]]>
+			 
+			 <include refid="search"></include>
+			 
+			  <![CDATA[
+			 union all
+			 select * from shoparea
+			 ]]>
+			 
+			 <include refid="search"></include>
+			 
+			 <![CDATA[
+			 order by create_date desc
+			 limit #{pageStart},#{perPageNum} 
+		]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			select count(num) from (
+			select * from house
+			]]>
+				 <include refid="search"></include>
+				 
+			<![CDATA[
+			union all
+			select * from jobarea
+			]]>
+			
+				 <include refid="search"></include>
+				 
+			<![CDATA[
+			union all
+			select * from shoparea
+			]]>
+			
+			<include refid="search"></include>
+			
+		<![CDATA[	
+			)as a where num>0
+		]]>
+	</select>
+	
+	<sql id="search">
+	<if test="search_struck=='null'">
+		<if test="search_money =='money_300up'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money>300 and area="부산"
+				</if>
+		</if>
+		
+		<if test="search_money =='money_300down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;300 and area="부산"
+				</if>
+		</if>
+		
+		<if test="search_money =='money_200down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;200 and area="부산"
+				</if>
+		</if>
+		
+		<if test="search_money =='money_100down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;100 and area="부산"
+				</if>
+		</if>
+		
+			
+	</if>
+	
+	<if test="search_struck=='house_ju'.toString()">
+		<if test="search_money =='money_300up'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money>300 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_300down'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;300 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_200down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;200 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_100down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;100 and area="부산" and struck='주택'
+				</if>
+		</if>
+	</if>
+	
+	<if test="search_struck=='house_one'.toString()">
+		<if test="search_money =='money_300up'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money>300 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_300down'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;300 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_200down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;200 and area="부산" and struck='주택'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_100down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;100 and area="부산" and struck='주택'
+				</if>
+		</if>
+	</if>
+	
+	<if test="search_struck=='jobarea'.toString()">
+		<if test="search_money =='money_300up'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money>300 and area="부산" and struck='회사'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_300down'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;300 and area="부산" and struck='회사'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_200down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;200 and area="부산" and struck='회사'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_100down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;100 and area="부산" and struck='회사'
+				</if>
+		</if>
+	</if>
+	
+	<if test="search_struck=='shoparea'.toString()">
+		<if test="search_money =='money_300up'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money>300 and area="부산" and struck='상가'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_300down'.toString()">
+				<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;300 and area="부산" and struck='상가'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_200down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;200 and area="부산" and struck='상가'
+				</if>
+		</if>
+		
+		<if test="search_money =='money_100down'.toString()">
+			<if test="search_area =='area_busan'.toString()">
+					where num>0 and money&lt;100 and area="부산" and struck='상가'
+				</if>
+		</if>
+	</if>
+	
+	</sql>
+</mapper>	

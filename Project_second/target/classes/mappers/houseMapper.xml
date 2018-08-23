@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.abc.mapper.HouseMapper">
+
+	<select id="listAll" resultType="org.abc.domain.HouseVO">
+		select
+		num,area,gu,dong,areanum,create_date,struck from house
+		union all
+		select
+		num,area,gu,dong,areanum,create_date,struck from jobarea
+		order by
+		create_date desc
+	</select>
+
+	<insert id="create">
+		insert into house (area,gu,dong,areanum,struck,money)
+		values(#{area},#{gu},#{dong},#{areanum},#{struck},#{money})
+	</insert>
+
+	<select id="read" resultType="org.abc.domain.HouseVO">
+		select * from house where
+		num=#{num}
+	</select>
+	
+	<update id="update">
+		update house set area=#{area},gu=#{gu},dong=#{dong},areanum=#{areanum},money=#{money} where num=#{num}
+	</update>
+	
+	<delete id="delete">
+		delete from house where num=#{num}
+	</delete>
+	
+	
+	<!-- select * from house union all select * from jobarea where num>0 order 
+		by create_date desc limit 0,10; -->
+</mapper>
